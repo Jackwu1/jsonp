@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button type="button">调用jack.com的接口</button>
+		<script type="text/javascript">
+			
+			function isGet() {
+				alert('后台调用成功')
+			}	
+			let btn = document.getElementsByTagName('button')[0];
+			btn.addEventListener('click', function(e) {
+				let script = document.createElement('script');
+				script.src = 'http://www.jack.com:8002/jump?callbackName=isGet';
+				document.body.appendChild(script);
+				script.onload = function(e) {
+					e.currentTarget.remove();
+				}
+				script.onerror = function(e) {
+					e.currentTarget.remove();
+				}
+			})
+		</script>
+	</body>
+</html>
